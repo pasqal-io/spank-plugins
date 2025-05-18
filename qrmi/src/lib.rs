@@ -14,6 +14,7 @@ pub mod common;
 pub mod consts;
 pub mod ibm;
 pub mod models;
+pub mod pasqal;
 
 use crate::models::{Payload, Target, TaskResult, TaskStatus};
 use anyhow::Result;
@@ -203,6 +204,7 @@ pub trait QuantumResource {
 fn qrmi(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_class::<crate::ibm::IBMDirectAccess>()?;
     m.add_class::<crate::ibm::IBMQiskitRuntimeService>()?;
+    m.add_class::<crate::pasqal::PasqalCloud>()?;
     m.add_class::<crate::models::TaskStatus>()?;
     m.add_class::<crate::models::Payload>()?;
     m.add_class::<crate::models::TaskResult>()?;
